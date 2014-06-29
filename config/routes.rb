@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  root 'articles#index'
+  get 'users/login', to: 'users#login', as: 'login_form'
+  post 'users/login', to: 'users#perform_login', as: 'login'
+
   resources :users
-
   resources :articles
-
   resources :stores
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

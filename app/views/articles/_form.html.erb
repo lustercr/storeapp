@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :store_id %><br>
-    <%= f.number_field :store_id %>
+    <%= collection_select(:article, :store_id, Store.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

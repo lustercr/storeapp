@@ -1,0 +1,15 @@
+<div class="col-sm-12">
+<%= form_tag(login_path, :class => 'login-form') do %>
+	<h2 class="text-center">Login</h2>
+	<div class="form-group">
+	<%= text_field_tag :email, params[:email], class: 'form-control input-lg', placeholder: 'Email or Login' %>
+	</div>
+	<div class="form-group">
+	<%= password_field_tag :password, params[:password], class: 'form-control input-lg', placeholder: 'Password' %>
+	</div>
+	<div class="form-group">
+	<button class="btn btn-primary btn-lg btn-block">Sign In</button>
+	<span class="pull-right"><a href="#">Register</a></span>
+	</div>
+<% end %>
+</div>

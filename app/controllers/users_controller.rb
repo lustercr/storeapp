@@ -1,10 +1,27 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  skip_before_action :auth_require, only: [:login]
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+  end
+
+  def login
+  end
+
+  def perform_login
+    user = User.authenticate(params[:email], params[:password])
+    if(!user)
+      flash[:danger] = "Email or password is invalid"
+      render "login"
+    else
+      session[:user] = user
+      flash[:success] = "Successfully logged in"
+      redirect_to root_url
+    end
   end
 
   # GET /users/1
