@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :text
+#  price          :float
+#  total_in_shelf :integer
+#  total_in_vault :float
+#  store_id       :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  price: 1.5
+  total_in_shelf: 1
+  total_in_vault: 1.5
+  store_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  price: 1.5
+  total_in_shelf: 1
+  total_in_vault: 1.5
+  store_id: 1
