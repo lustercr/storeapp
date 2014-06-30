@@ -27,24 +27,24 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'paper_trail', '~> 3.0.3'
-gem 'annotate'
+gem 'annotate', '2.6.5'
 gem "font-awesome-rails"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails'
-  gem 'shoulda'
+  gem 'factory_girl_rails', '4.4.1'
+  gem "capybara", '2.3.0'
+  gem 'shoulda', '3.5.0'
 end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'carrierwave'
-gem 'rmagick'
+gem 'carrierwave', '0.10.0'
+gem 'rmagick', '2.13.2'
 
-gem 'cancan'
-gem 'grape'
-gem 'choices'
-
+gem 'cancan', '1.6.10'
+gem 'grape', '0.7.0'
+gem 'choices', '0.4.0'
 
 
 # Use unicorn as the app server
