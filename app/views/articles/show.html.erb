@@ -1,34 +1,36 @@
 <p id="notice"><%= notice %></p>
+<% if can? :update, @article %>
+<div class="alert alert-info clearfix alert-dismissible" role="alert">
+    <strong>Admin actions</strong>.
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          article_path(@article),
+          :method => :delete,
+          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+          :class => 'btn btn-sm btn-danger pull-right' %>
+    <%= link_to('Edit Article', edit_article_path(@article), :class => 'btn btn-sm btn-warning pull-right margin-right-10') %>
+</div>
+<% end %>
+<div class="col-md-offset-1 col-md-10">
+    <div class="thumbnail">
+        <img class="img-responsive" src="<%= @article.thumbnail.url %>" alt="">
+        <div class="caption-full">
+            <h4 class="pull-right"><%= number_to_currency(@article.price) %></h4>
+            <h4>
+              <a href="#"><%= @article.name %></a>
+            </h4>
+            <p><%= @article.description %></p>
+        </div>
+        <div class="ratings">
+            <p class="pull-right">3 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                4.0 stars
+            </p>
+        </div>
+    </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @article.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @article.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @article.price %>
-</p>
-
-<p>
-  <strong>Total in shelf:</strong>
-  <%= @article.total_in_shelf %>
-</p>
-
-<p>
-  <strong>Total in vault:</strong>
-  <%= @article.total_in_vault %>
-</p>
-
-<p>
-  <strong>Store:</strong>
-  <%= @article.store_id %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>

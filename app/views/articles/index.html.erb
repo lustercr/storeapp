@@ -1,35 +1,45 @@
-<h1>Listing articles</h1>
+<%- model_class = Article -%>
+<% if can? :create, Article %>
+<div class="alert alert-info clearfix alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-<table class="table table-striped table-hover table-condensed">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Total in shelf</th>
-      <th>Total in vault</th>
-      <th>Store</th>
-      <th colspan="3">Opciones</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.name %></td>
-        <td><%= article.description %></td>
-        <td><%= article.price %></td>
-        <td><%= article.total_in_shelf %></td>
-        <td><%= article.total_in_vault %></td>
-        <td><%= article.store_id %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>
+    <strong>Hey <%= current_user.login %>!</strong>.
+  <%= link_to('Add Articles', new_article_path, :class => 'btn btn-sm btn-primary pull-right') %>
+</div>
+<% end %>
+<div class="row">
+  <% @articles.each do |article| %>
+  <div class="col-sm-3 thumbnail">
+    <div class="col-item">
+        <div class="photo">
+            <img src="<%= article.thumbnail.thumb.url %>" class="img-responsive" alt="a">
+        </div>
+        <div class="info">
+            <div class="row">
+                <div class="price col-md-6">
+                    <h5><%= link_to article.name, article %></h5>
+                    <h5 class="price-text-color">
+                      <%= number_to_currency(article.price) %>
+                    </h5>
+                </div>
+                <div class="rating hidden-sm col-md-6">
+                </div>
+            </div>
+            <div class="caption">
+              <p> 
+                <%= truncate article.description, length: 80 %>
+              </p>
+            </div>
+            <div class="separator clear-left">
+                <p class="btn-add">
+                    <i class="fa fa-shopping-cart"></i><a class="hidden-sm">Add to cart</a></p>
+                <p class="btn-details">
+                    <i class="fa fa-list"></i><%= link_to 'More details', article %></p>
+            </div>
+            <div class="clearfix">
+            </div>
+        </div>
+    </div>
+</div>
+  <% end %>
+</div>

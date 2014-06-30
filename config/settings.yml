@@ -1,0 +1,15 @@
+defaults: &defaults
+  api:
+    http_basic_user: my_user
+    http_basic_password: my_password
+    record_not_found: 'Record not Found'
+    bad_request: 'Bad Request'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   root 'articles#index'
   get 'users/login', to: 'users#login', as: 'login_form'
+  get 'users/logout', to: 'users#logout', as: 'logout'
   post 'users/login', to: 'users#perform_login', as: 'login'
 
   resources :users
   resources :articles
   resources :stores
+
+  mount API::RESTServices => '/services'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

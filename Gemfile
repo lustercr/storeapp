@@ -38,6 +38,14 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave'
+gem 'rmagick'
+
+gem 'cancan'
+gem 'grape'
+gem 'choices'
+
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

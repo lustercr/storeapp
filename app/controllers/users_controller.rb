@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :auth_require, only: [:login, :perform_login, :logout]
+  skip_authorize_resource only: [:login, :perform_login, :logout]
 
-  skip_before_action :auth_require, only: [:login]
 
   # GET /users
   # GET /users.json
@@ -12,13 +13,18 @@ class UsersController < ApplicationController
   def login
   end
 
+  def logout
+    session[:user] = nil
+    redirect_to login_url
+  end
+
   def perform_login
     user = User.authenticate(params[:email], params[:password])
     if(!user)
       flash[:danger] = "Email or password is invalid"
       render "login"
     else
-      session[:user] = user
+      session[:user] = user.id
       flash[:success] = "Successfully logged in"
       redirect_to root_url
     end

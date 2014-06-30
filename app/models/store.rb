@@ -11,4 +11,7 @@
 
 class Store < ActiveRecord::Base
   has_paper_trail
+  has_many(:articles)
+  mount_uploader :thumbnail, ArticleImageUploader
+  validates :name, :address, presence: true
 end
